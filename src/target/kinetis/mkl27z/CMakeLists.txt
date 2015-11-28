@@ -1,4 +1,4 @@
-add_library(target STATIC startup.cpp vectors.cpp flashconfig.cpp)
+add_library(target STATIC startup.cpp lpuart.cpp flashconfig.cpp vectors.cpp)
 set(TARGET_LINKER_SCRIPT mkl27z256.ld)
 set(TARGET_FLAGS -mcpu=cortex-m0plus -mthumb -Os -fdata-sections
   -ffunction-sections -nostdlib -ffreestanding -nostartfiles)

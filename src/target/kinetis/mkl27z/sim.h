@@ -1,8 +1,13 @@
+#define SIM_SOPT2 p_addr32(0x40048004)
+#define SIM_SOPT2_LPUART0SRC_IRC48M (1 << 26)
+#define SIM_SOPT2_LPUART0SRC_MCGIRCLK (3 << 26)
+
 #define SIM_SCGC5 p_addr32(0x40048038)
 #define SIM_SCGC5_PORTA (1 << 9)
 #define SIM_SCGC5_PORTB (1 << 10)
 #define SIM_SCGC5_PORTC (1 << 11)
 #define SIM_SCGC5_PORTD (1 << 12)
 #define SIM_SCGC5_PORTE (1 << 13)
+#define SIM_SCGC5_LPUART0 (1 << 20)
 
 #define SIM_COPC p_addr32(0x40048100)
