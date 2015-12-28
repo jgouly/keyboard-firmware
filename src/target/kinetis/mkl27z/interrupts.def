@@ -1,0 +1,47 @@
+INT(reset_handler)   //  1 ARM: Initial Program Counter (PC)
+INT(nmi)             //  2 ARM: Non-maskable Interrupt (NMI)
+INT(hard_fault)      //  3 ARM: Hard Fault
+INT(memmanage_fault) //  4 ARM: MemManage Fault
+INT(bus_fault)       //  5 ARM: Bus Fault
+INT(usage_fault)     //  6 ARM: Usage Fault
+INT(unused_7)        //  7 --
+INT(unused_8)        //  8 --
+INT(unused_9)        //  9 --
+INT(unused_10)       // 10 --
+INT(svcall)          // 11 ARM: Supervisor call (SVCall)
+INT(debugmonitor)    // 12 ARM: Debug Monitor
+INT(fault)           // 13 --
+INT(pendablesrvreq)  // 14 ARM: Pendable req serv(PendableSrvReq)
+INT(systick)         // 15 ARM: System tick timer (SysTick)
+INT(dma_ch0)         // 16 DMA channel 0 transfer complete
+INT(dma_ch1)         // 17 DMA channel 1 transfer complete
+INT(dma_ch2)         // 18 DMA channel 2 transfer complete
+INT(dma_ch3)         // 19 DMA channel 3 transfer complete
+INT(unused)          // 20 --
+INT(flash_cmd)       // 21 Flash Memory Command complete
+INT(low_voltage)     // 22 Low-voltage detect/warning
+INT(wakeup)          // 23 Low Leakage Wakeup
+INT(i2c0)            // 24 I2C0
+INT(i2c1)            // 25 I2C1
+INT(spi0)            // 26 SPI0
+INT(spi1)            // 27 SPI1
+INT(uart0_status)    // 28 UART0 status & error
+INT(uart1_status)    // 29 UART1 status & error
+INT(uart2_status)    // 30 UART2 status & error
+INT(adc0)            // 31 ADC0
+INT(cmp0)            // 32 CMP0
+INT(ftm0)            // 33 FTM0
+INT(ftm1)            // 34 FTM1
+INT(ftm2)            // 35 FTM2
+INT(rtc_alarm)       // 36 RTC Alarm interrupt
+INT(rtc_seconds)     // 37 RTC Seconds interrupt
+INT(pit)             // 38 PIT Both Channels
+INT(i2s0)            // 39 I2S0 Transmit & Receive
+INT(usb)             // 40 USB OTG
+INT(dac0)            // 41 DAC0
+INT(tsi0)            // 42 TSI0
+INT(mcg)             // 43 MCG
+INT(lptmr)           // 44 Low Power Timer
+INT(software)        // 45 Software interrupt
+INT(porta)           // 46 Pin detect (Port A)
+INT(portcd)          // 47 Pin detect (Port C and D)
