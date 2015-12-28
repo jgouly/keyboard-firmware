@@ -1,6 +1,6 @@
-int main() {
+int app_main() {
   while (1)
-  /* do nothing */;
+    /* do nothing */;
 
   __builtin_unreachable();
 }
