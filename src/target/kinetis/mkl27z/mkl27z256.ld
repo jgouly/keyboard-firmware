@@ -16,6 +16,10 @@ SECTIONS
     KEEP(*(.flashconfig*))
     *(.text*)
     *(.rodata*)
+    . = ALIGN(4);
+    __init_array_start = .;
+    KEEP (*(.init_array*))
+    __init_array_end = .;
   } > FLASH = 0xFF
 
   _etext = .;
