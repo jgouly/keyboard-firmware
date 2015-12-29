@@ -6,5 +6,6 @@
 
 using LayoutT = TestMatrixConfig;
 using ResultT = TestMatrix;
+using MapT = TestMatrix;
 
 #endif

@@ -1,3 +1,3 @@
 #include "config.h"
 
-void processKeys(const ResultT &result);
+void processKeys(const ResultT &result, const MapT &map);

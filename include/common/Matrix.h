@@ -25,7 +25,6 @@ public:
   unsigned getNumRows() const { return Rows; }
   unsigned getNumColumns() const { return Columns; }
 
-private:
   T data[Rows * Columns];
 };
 

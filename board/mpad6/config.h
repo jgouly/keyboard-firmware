@@ -10,8 +10,11 @@
 
 using LayoutT = MatrixConfig<ROWS, COLUMNS, MKL27ZInputPin, MKL27ZOutputPin>;
 using ResultT = Matrix<unsigned, ROWS, COLUMNS>;
+using MapT = Matrix<unsigned, ROWS, COLUMNS>;
 
 extern const MKL27ZInputPin mkl27zRowPins[ROWS];
 extern const MKL27ZOutputPin mkl27zColumnPins[COLUMNS];
+
+extern const MapT mkl27zMap;
 
 #endif

@@ -7,7 +7,7 @@ typedef unsigned char uint8_t;
 #include "lpuart.h"
 #define p_addr32(addr) (*(volatile uint32_t *)addr)
 
-extern int app_main(const LayoutT &l);
+extern int app_main(const LayoutT &l, const MapT &map);
 
 void disable_watchdog() { SIM_COPC = 0; }
 
@@ -59,7 +59,7 @@ extern "C" __attribute__((section(".startup"))) void reset_handler_isr() {
   lpuart_init<SELECTED_LPUART_CLK, SELECTED_LPUART_PAIR>();
 
   const LayoutT l { mkl27zRowPins, mkl27zColumnPins };
-  app_main(l);
+  app_main(l, mkl27zMap);
 
   __builtin_unreachable();
 }
