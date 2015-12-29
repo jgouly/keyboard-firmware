@@ -11,7 +11,7 @@ public:
 
   T get(unsigned C, unsigned R) const { return data[C + (R * Columns)]; }
 
-  void dump() {
+  void dump() const {
     for (unsigned c = 0; c < Columns; ++c) {
       for (unsigned r = 0; r < Rows; ++r) {
         putchar('0' + data[c + (r * Columns)]);

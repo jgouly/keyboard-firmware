@@ -4,7 +4,7 @@ if(${TARGET} STREQUAL "host")
 else()
   set(TARGET_LIB -Wl,-whole-archive target -Wl,-no-whole-archive)
 endif()
-target_link_libraries(keyboard.elf ${TARGET_LIB} board scan)
+target_link_libraries(keyboard.elf ${TARGET_LIB} action board scan)
 if (NOT "${CMAKE_OBJCOPY}" STREQUAL "CMAKE_OBJCOPY-NOTFOUND")
   add_custom_command(TARGET keyboard.elf POST_BUILD
     COMMAND
