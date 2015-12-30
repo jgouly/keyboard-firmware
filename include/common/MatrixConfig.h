@@ -11,9 +11,9 @@ public:
   Matrix<unsigned, Rows, Columns> createResultMatrix() const {
     return Matrix<unsigned, Rows, Columns>();
   }
-  PinIT getRowPin(unsigned R) { return inputPins[R]; }
+  const PinIT &getRowPin(unsigned R) const { return inputPins[R]; }
 
-  PinOT getColumnPin(unsigned C) { return outputPins[C]; }
+  const PinOT &getColumnPin(unsigned C) const { return outputPins[C]; }
 
   unsigned getNumRows() const { return Rows; }
   unsigned getNumColumns() const { return Columns; }

@@ -4,6 +4,7 @@
 class TestInputPin {
 public:
   TestInputPin(unsigned constantVal) : constantVal(constantVal) {}
+  void init() const {}
   unsigned readInput() const { return constantVal; }
 
 private:
@@ -13,6 +14,7 @@ private:
 class TestOutputPin {
 public:
   TestOutputPin() {}
+  void init() const {}
   void outputHigh() const {}
   void outputLow() const {}
 };

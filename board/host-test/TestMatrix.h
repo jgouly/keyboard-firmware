@@ -52,9 +52,9 @@ public:
     }
   }
 
-  TestInputPin getRowPin(unsigned R) { return rowPins[R]; }
+  const TestInputPin &getRowPin(unsigned R) const { return rowPins[R]; }
 
-  TestOutputPin getColumnPin(unsigned C) { return columnPins[C]; }
+  const TestOutputPin &getColumnPin(unsigned C) const { return columnPins[C]; }
 
   unsigned getNumRows() const { return Rows; }
   unsigned getNumColumns() const { return Columns; }
