@@ -24,6 +24,16 @@ SECTIONS
 
   _etext = .;
 
+  .usbdescriptortable (NOLOAD) : {
+    . = ALIGN(512);
+    *(.usbdescriptortable*)
+  } > RAM
+
+  .usbbuffers (NOLOAD) : {
+    . = ALIGN(4);
+    *(.usbbuffers*)
+  } > RAM
+
   .data : AT (_etext) {
     . = ALIGN(4);
     _sdata = .;

@@ -1,4 +1,5 @@
 add_executable(keyboard.elf keyboard.cpp)
+set_target_properties(keyboard.elf PROPERTIES LINKER_LANGUAGE C)
 if(${TARGET} STREQUAL "host")
   set(TARGET_LIB target)
 else()

@@ -2,9 +2,11 @@ typedef unsigned int uint32_t;
 typedef unsigned char uint8_t;
 
 #include "config.h"
+#include "lpuart.h"
+#include "mcg.h"
 #include "port.h"
 #include "sim.h"
-#include "lpuart.h"
+#include "usb.h"
 #define p_addr32(addr) (*(volatile uint32_t *)addr)
 
 extern int app_main(const LayoutT &l, const MapT &map);
@@ -14,6 +16,14 @@ void disable_watchdog() { SIM_COPC = 0; }
 int putchar(int c) {
   lpuart0_putc(c);
 }
+
+void delay() __attribute__((noinline));
+void delay() {
+  for (int i = 0; i < 10000; ++i) {
+    __asm("mov r0,r0");
+  }
+}
+extern "C" void cdelay() { delay(); }
 
 extern "C" __attribute__((used)) void memset(void *buf, int value, int num);
 extern "C" void memset(void *buf, int value, int num) {
@@ -47,6 +57,14 @@ void copy_rom_to_ram() {
     *dest++ = 0;
 }
 
+static void init_clocks() {
+  MCG_MC |= MCG_MC_HIRCEN;
+  while ((MCG_S & MCG_S_CLKST) != 0)
+    ;
+}
+
+extern "C" void usb_init();
+
 extern "C" __attribute__((section(".startup"))) void reset_handler_isr() {
   disable_watchdog();
   // Enable the clock gating to all GPIO ports.
@@ -54,9 +72,12 @@ extern "C" __attribute__((section(".startup"))) void reset_handler_isr() {
               SIM_SCGC5_PORTD | SIM_SCGC5_PORTE;
 
   copy_rom_to_ram();
+  init_clocks();
+
   call_static_constructors();
 
   lpuart_init<SELECTED_LPUART_CLK, SELECTED_LPUART_PAIR>();
+  usb_init();
 
   const LayoutT l { mkl27zRowPins, mkl27zColumnPins };
   app_main(l, mkl27zMap);

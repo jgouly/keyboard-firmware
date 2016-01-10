@@ -33,11 +33,18 @@
 
 #include "usb_desc.h"
 
+#if 0
 #include "keylayouts.h"
+#endif
 
 #if defined(KEYBOARD_INTERFACE)
 
+#if 0
 #include <inttypes.h>
+#endif
+typedef unsigned char uint8_t;
+typedef unsigned short uint16_t;
+typedef unsigned int uint32_t;
 
 // C language implementation
 #ifdef __cplusplus
@@ -65,6 +72,7 @@ extern volatile uint8_t keyboard_leds;
 
 // C++ interface
 #ifdef __cplusplus
+#if 0
 #include "Stream.h"
 class usb_keyboard_class : public Print
 {
@@ -93,7 +101,7 @@ public:
 };
 
 extern usb_keyboard_class Keyboard;
-
+#endif
 #endif // __cplusplus
 
 #endif // KEYBOARD_INTERFACE

@@ -30,8 +30,10 @@
 
 #include "usb_dev.h"
 #include "usb_keyboard.h"
+#if 0
 #include "core_pins.h" // for yield()
 #include "keylayouts.h"
+#endif
 //#include "HardwareSerial.h"
 #include <string.h> // for memcpy()
 
@@ -65,6 +67,7 @@ uint8_t keyboard_idle_count=0;
 volatile uint8_t keyboard_leds=0;
 
 
+#if 0
 
 static KEYCODE_TYPE unicode_to_keycode(uint16_t cpoint);
 static void write_key(KEYCODE_TYPE keycode);
@@ -439,6 +442,7 @@ int usb_keyboard_press(uint8_t key, uint8_t modifier)
 	keyboard_keys[0] = 0;
 	return usb_keyboard_send();
 }
+#endif
 
 
 // Maximum number of transmit packets to queue so we don't starve other endpoints for memory
@@ -496,7 +500,9 @@ int usb_keyboard_send(void)
 			transmit_previous_timeout = 1;
 			return -1;
 		}
+#if 0
 		yield();
+#endif
 	}
 	*(tx_packet->buf) = keyboard_modifier_keys;
 	*(tx_packet->buf + 1) = keyboard_media_keys;

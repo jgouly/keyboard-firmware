@@ -34,8 +34,10 @@
 #include "usb_desc.h"
 #ifdef NUM_ENDPOINTS
 #include "usb_names.h"
+#if 0
 #include "kinetis.h"
 #include "avr_functions.h"
+#endif
 
 // USB Descriptors are binary data which the USB host reads to
 // automatically detect a USB device's capabilities.  The format
@@ -847,6 +849,7 @@ struct usb_string_descriptor_struct usb_string_serial_number_default = {
 
 void usb_init_serialnumber(void)
 {
+#if 0
 	char buf[11];
 	uint32_t i, num;
 
@@ -867,6 +870,9 @@ void usb_init_serialnumber(void)
 		usb_string_serial_number_default.wString[i] = c;
 	}
 	usb_string_serial_number_default.bLength = i * 2 + 2;
+#endif
+	usb_string_serial_number_default.wString[0] = 'a';
+	usb_string_serial_number_default.bLength = 2 + 2;
 }
 
 

@@ -31,7 +31,10 @@
 #include "usb_dev.h"
 #if F_CPU >= 20000000 && defined(NUM_ENDPOINTS)
 
+#if 0
 #include "kinetis.h"
+#endif
+#include "mkl27z/usb.h"
 //#include "HardwareSerial.h"
 #include "usb_mem.h"
 

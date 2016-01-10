@@ -34,7 +34,12 @@
 // These definitions are intended to allow users to override the default
 // USB manufacturer, product and serial number strings.
 
+#if 0
 #include <stdint.h>
+#endif
+typedef unsigned int uint32_t;
+typedef unsigned short uint16_t;
+typedef unsigned char uint8_t;
 
 #ifdef __cplusplus
 extern "C" {

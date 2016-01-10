@@ -31,7 +31,11 @@
 #ifndef _usb_mem_h_
 #define _usb_mem_h_
 
+#if 0
 #include <stdint.h>
+#endif
+typedef unsigned int uint32_t;
+typedef unsigned char uint8_t;
 
 typedef struct usb_packet_struct {
 	uint16_t len;
