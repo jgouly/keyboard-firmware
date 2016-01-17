@@ -2,6 +2,8 @@
 
 extern int app_main(const LayoutT &l, const MapT &map);
 
+void msdelay(uint32_t ms) {}
+
 int main(void) {
   LayoutT l;
   l.reconfigure(2, 3);

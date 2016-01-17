@@ -1,6 +1,7 @@
 #include "scan/scan.h"
+void msdelay(unsigned int ms);
 
-ResultT scan(LayoutT l) {
+static ResultT singleScan(LayoutT l) {
   ResultT result = l.createResultMatrix();
   for (unsigned C = 0; C < l.getNumColumns(); ++C) {
     const auto &columnPin = l.getColumnPin(C);
@@ -11,6 +12,19 @@ ResultT scan(LayoutT l) {
       result.put(C, R, val);
     }
     columnPin.outputLow();
+  }
+  return result;
+}
+
+ResultT scan(LayoutT l) {
+  ResultT r0 = singleScan(l);
+  msdelay(4);
+  ResultT r1 = singleScan(l);
+  ResultT result = l.createResultMatrix();
+  for (unsigned C = 0; C < l.getNumColumns(); ++C) {
+    for (unsigned R = 0; R < l.getNumRows(); ++R) {
+      result.put(C, R, r0.get(C, R) & r1.get(C, R));
+    }
   }
   return result;
 }
