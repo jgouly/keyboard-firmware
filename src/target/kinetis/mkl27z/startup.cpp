@@ -5,7 +5,9 @@ typedef unsigned char uint8_t;
 #include "lpuart.h"
 #include "mcg.h"
 #include "port.h"
+#include "scb.h"
 #include "sim.h"
+#include "systick.h"
 #include "usb.h"
 #define p_addr32(addr) (*(volatile uint32_t *)addr)
 
@@ -15,6 +17,39 @@ void disable_watchdog() { SIM_COPC = 0; }
 
 int putchar(int c) {
   lpuart0_putc(c);
+}
+
+extern "C" void __enable_irq();
+extern "C" void __disable_irq();
+volatile uint32_t systick_millis_count = 0;
+
+extern "C" void systick_isr(void) { systick_millis_count++; }
+
+uint32_t micros(void) {
+  __disable_irq();
+  uint32_t current = SYST_CVR;
+  uint32_t count = systick_millis_count;
+  uint32_t istatus = SCB_ICSR; // bit 26 indicates if systick exception pending
+  __enable_irq();
+  if ((istatus & SCB_ICSR_PENDSTSET) && current > 50)
+    count++;
+  current = ((F_CPU / 1000) - 1) - current;
+  return count * 1000 + ((current * (uint32_t)87381) >> 22);
+}
+
+void msdelay(uint32_t ms) {
+  uint32_t start = micros();
+
+  if (ms > 0) {
+    while (1) {
+      while ((micros() - start) >= 1000) {
+        ms--;
+        if (ms == 0)
+          return;
+        start += 1000;
+      }
+    }
+  }
 }
 
 void delay() __attribute__((noinline));
@@ -63,6 +98,13 @@ static void init_clocks() {
     ;
 }
 
+static void init_systick() {
+  SYST_RVR = (F_CPU / 1000) - 1;
+  SYST_CVR = 0;
+  SYST_CSR = SYST_CSR_CLKSOURCE | SYST_CSR_TICKINT | SYST_CSR_ENABLE;
+  SCB_SHPR3 = 0x20200000; // Systick = priority 32
+}
+
 extern "C" void usb_init();
 
 extern "C" __attribute__((section(".startup"))) void reset_handler_isr() {
@@ -73,13 +115,15 @@ extern "C" __attribute__((section(".startup"))) void reset_handler_isr() {
 
   copy_rom_to_ram();
   init_clocks();
+  init_systick();
 
   call_static_constructors();
 
   lpuart_init<SELECTED_LPUART_CLK, SELECTED_LPUART_PAIR>();
+
   usb_init();
 
-  const LayoutT l { mkl27zRowPins, mkl27zColumnPins };
+  const LayoutT l{mkl27zRowPins, mkl27zColumnPins};
   app_main(l, mkl27zMap);
 
   __builtin_unreachable();
