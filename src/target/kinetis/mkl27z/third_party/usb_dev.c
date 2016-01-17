@@ -1001,7 +1001,7 @@ void usb_init(void)
 	//USB0_USBTRC0 |= 0x40; // undocumented bit
 
 	// FIXME: Remove this delay.
-	cdelay();
+	cmsdelay(1);
 	// enable USB
 	USB0_CTL = USB_CTL_USBENSOFEN;
 	USB0_USBCTRL = 0;

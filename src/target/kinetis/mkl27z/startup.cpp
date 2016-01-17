@@ -52,13 +52,7 @@ void msdelay(uint32_t ms) {
   }
 }
 
-void delay() __attribute__((noinline));
-void delay() {
-  for (int i = 0; i < 10000; ++i) {
-    __asm("mov r0,r0");
-  }
-}
-extern "C" void cdelay() { delay(); }
+extern "C" void cmsdelay(uint32_t ms) { msdelay(ms); }
 
 extern "C" __attribute__((used)) void memset(void *buf, int value, int num);
 extern "C" void memset(void *buf, int value, int num) {
