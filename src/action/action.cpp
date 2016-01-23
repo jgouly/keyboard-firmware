@@ -8,6 +8,8 @@ void processKeys(const ResultT &result, const MapT &map, USBBuffer &buf) {
         unsigned action = map.get(C, R);
         if (IS_KEY(action)) {
           buf.push_back(GET_KEY(action));
+        } else if (IS_MOD(action)) {
+          buf.push_mod(GET_MOD(action));
         }
       }
     }

@@ -63,6 +63,7 @@ void sendBuffer(const USBBuffer &buff) {
   for (unsigned i = count; i < 6; ++i) {
     keyboard_keys[i] = 0;
   }
+  keyboard_modifier_keys = buff.getMods();
   usb_keyboard_send();
 }
 

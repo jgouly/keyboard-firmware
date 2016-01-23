@@ -9,14 +9,21 @@ public:
       data[counter++] = val;
     }
   }
+  void push_mod(unsigned mod) {
+    mods |= mod;
+  }
   const unsigned *getData() const {
     return data;
+  }
+  unsigned getMods() const {
+    return mods;
   }
   unsigned size() const {
     return counter;
   }
 private:
   unsigned counter = 0;
+  unsigned mods = 0;
   unsigned data[MAX_BUFFER_SIZE];
 };
 
