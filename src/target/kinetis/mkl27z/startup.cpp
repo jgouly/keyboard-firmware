@@ -11,13 +11,12 @@ typedef unsigned char uint8_t;
 #include "usb.h"
 #define p_addr32(addr) (*(volatile uint32_t *)addr)
 
+#include "common/USBBuffer.h"
+#include "third_party/usb_keyboard.h"
+
 extern int app_main(const LayoutT &l, const MapT &map);
 
 void disable_watchdog() { SIM_COPC = 0; }
-
-int putchar(int c) {
-  lpuart0_putc(c);
-}
 
 extern "C" void __enable_irq();
 extern "C" void __disable_irq();
@@ -53,6 +52,19 @@ void msdelay(uint32_t ms) {
 }
 
 extern "C" void cmsdelay(uint32_t ms) { msdelay(ms); }
+
+void sendBuffer(const USBBuffer &buff) {
+  const unsigned *buf = buff.getData();
+  unsigned count = buff.size();
+  for (unsigned i = 0; i < count; ++i) {
+    int c = buf[i];
+    keyboard_keys[i] = (c >= 'a' && c <= 'z') ? 4 + (c - 'a') : c;
+  }
+  for (unsigned i = count; i < 6; ++i) {
+    keyboard_keys[i] = 0;
+  }
+  usb_keyboard_send();
+}
 
 extern "C" __attribute__((used)) void memset(void *buf, int value, int num);
 extern "C" void memset(void *buf, int value, int num) {

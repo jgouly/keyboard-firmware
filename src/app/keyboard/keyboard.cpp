@@ -12,11 +12,15 @@ static void init_matrix(const LayoutT &l) {
   }
 }
 
+void sendBuffer(const USBBuffer &buf);
+
 int app_main(const LayoutT &l, const MapT &map) {
   init_matrix(l);
   while (1) {
+    USBBuffer buffer;
     ResultT result = scan(l);
-    processKeys(result, map);
+    processKeys(result, map, buffer);
+    sendBuffer(buffer);
   }
   __builtin_unreachable();
 }
