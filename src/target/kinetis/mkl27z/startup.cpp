@@ -57,8 +57,7 @@ void sendBuffer(const USBBuffer &buff) {
   const unsigned *buf = buff.getData();
   unsigned count = buff.size();
   for (unsigned i = 0; i < count; ++i) {
-    int c = buf[i];
-    keyboard_keys[i] = (c >= 'a' && c <= 'z') ? 4 + (c - 'a') : c;
+    keyboard_keys[i] = buf[i];
   }
   for (unsigned i = count; i < 6; ++i) {
     keyboard_keys[i] = 0;

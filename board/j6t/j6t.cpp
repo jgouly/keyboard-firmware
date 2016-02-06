@@ -5,9 +5,9 @@ const MKL27ZOutputPin mkl27zColumnPins[] = {62, 63, 64, 19, 18, 21, 20, 44, 43, 
 const MKL27ZInputPin mkl27zRowPins[] = {33, 35, 36, 37, 49};
 
 const MapT mkl27zMap { 
-  KEY('a'), KEY('b'), KEY('c'), KEY('d'), KEY('e'), KEY('f'), KEY('g'), KEY('h'), KEY('i'), KEY('j'), KEY('k'), KEY('l'), KEY('m'), KEY('n'), KEY('o'),
-  KEY('a'), KEY('b'), KEY('c'), KEY('d'), KEY('e'), KEY('f'), KEY('g'), KEY('h'), KEY('i'), KEY('j'), KEY('k'), KEY('l'), KEY('m'), KEY('n'), KEY('o'),
-  KEY('a'), KEY('b'), KEY('c'), KEY('d'), KEY('e'), KEY('f'), KEY('g'), KEY('h'), KEY('i'), KEY('j'), KEY('k'), KEY('l'), KEY('m'), KEY('n'), KEY('o'),
-  KEY('a'), KEY('b'), KEY('c'), KEY('d'), KEY('e'), KEY('f'), KEY('g'), KEY('h'), KEY('i'), KEY('j'), KEY('k'), KEY('l'), KEY('m'), KEY('n'), KEY('o'),
-  KEY('a'), KEY('b'), KEY('c'), KEY('d'), KEY('e'), KEY('f'), KEY('g'), KEY('h'), KEY('i'), KEY('j'), KEY('k'), KEY('l'), KEY('m'), KEY('n'), KEY('o')
+  KEY_A, KEY_B, KEY_C, KEY_D, KEY_E, KEY_F, KEY_G, KEY_H, KEY_I, KEY_J, KEY_K, KEY_L, KEY_M, KEY_N, KEY_O,
+  KEY_A, KEY_B, KEY_C, KEY_D, KEY_E, KEY_F, KEY_G, KEY_H, KEY_I, KEY_J, KEY_K, KEY_L, KEY_M, KEY_N, KEY_O,
+  KEY_A, KEY_B, KEY_C, KEY_D, KEY_E, KEY_F, KEY_G, KEY_H, KEY_I, KEY_J, KEY_K, KEY_L, KEY_M, KEY_N, KEY_O,
+  KEY_A, KEY_B, KEY_C, KEY_D, KEY_E, KEY_F, KEY_G, KEY_H, KEY_I, KEY_J, KEY_K, KEY_L, KEY_M, KEY_N, KEY_O,
+  KEY_A, KEY_B, KEY_C, KEY_D, KEY_E, KEY_F, KEY_G, KEY_H, KEY_I, KEY_J, KEY_K, KEY_L, KEY_M, KEY_N, KEY_O
 };
