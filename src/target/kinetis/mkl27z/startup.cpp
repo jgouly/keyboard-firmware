@@ -51,8 +51,6 @@ void msdelay(uint32_t ms) {
   }
 }
 
-extern "C" void cmsdelay(uint32_t ms) { msdelay(ms); }
-
 void sendBuffer(const USBBuffer &buff) {
   const unsigned *buf = buff.getData();
   unsigned count = buff.size();

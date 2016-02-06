@@ -36,3 +36,6 @@
 #define USB0_CLK_RECOVER_IRC_EN_IRC_EN (1 << 1)
 #define USB0_CLK_RECOVER_CTRL p_addr32(0x40072140)
 #define USB0_CLK_RECOVER_CTRL_CLOCK_RECOVER_EN (1 << 7)
+// USB Transceiver Control Register 0
+#define USB0_USBTRC0 (*(volatile uint8_t *)0x4007210C)
+#define USB_USBTRC_USBRESET ((uint8_t)0x80)

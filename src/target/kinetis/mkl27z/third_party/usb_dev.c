@@ -983,7 +983,7 @@ void usb_init(void)
 #endif
 
 	// reset USB module
-	//USB0_USBTRC0 = USB_USBTRC_USBRESET;
+	USB0_USBTRC0 = USB_USBTRC_USBRESET;
 	//while ((USB0_USBTRC0 & USB_USBTRC_USBRESET) != 0) ; // wait for reset to end
 
 	SIM_SOPT2 |= SIM_SOPT2_USBSRC_IRC48M;
@@ -998,10 +998,8 @@ void usb_init(void)
 	USB0_ERRSTAT = 0xFF;
 	USB0_OTGISTAT = 0xFF;
 
-	//USB0_USBTRC0 |= 0x40; // undocumented bit
+	USB0_USBTRC0 |= 0x40; // undocumented bit
 
-	// FIXME: Remove this delay.
-	cmsdelay(1);
 	// enable USB
 	USB0_CTL = USB_CTL_USBENSOFEN;
 	USB0_USBCTRL = 0;
