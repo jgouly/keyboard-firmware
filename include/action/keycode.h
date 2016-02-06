@@ -12,6 +12,8 @@
 #define GET_MOD(M) (M & ~MOD_BIT)
 
 enum USBKeyCode {
+  KEY_NONE = 0,
+
   KEY_A = KEY(4),
   KEY_B = KEY(5),
   KEY_C = KEY(6),
@@ -37,7 +39,34 @@ enum USBKeyCode {
   KEY_W = KEY(26),
   KEY_X = KEY(27),
   KEY_Y = KEY(28),
-  KEY_Z = KEY(29)
+  KEY_Z = KEY(29),
+
+  KEY_1 = KEY(30),
+  KEY_2 = KEY(31),
+  KEY_3 = KEY(32),
+  KEY_4 = KEY(33),
+  KEY_5 = KEY(34),
+  KEY_6 = KEY(35),
+  KEY_7 = KEY(36),
+  KEY_8 = KEY(37),
+  KEY_9 = KEY(38),
+  KEY_0 = KEY(39),
+
+  KEY_ENTER = KEY(40),
+  KEY_ESC = KEY(41),
+  KEY_BACKSPACE = KEY(42),
+  KEY_TAB = KEY(43),
+  KEY_SPACE = KEY(44),
+  KEY_MINUS = KEY(45),
+  KEY_EQUALS = KEY(46),
+  KEY_LBRACE = KEY(47),
+  KEY_RBRACE = KEY(48),
+  KEY_SEMICOLON = KEY(51),
+  KEY_QUOTE = KEY(52),
+  KEY_COMMA = KEY(54),
+  KEY_PERIOD = KEY(55),
+  KEY_SLASH = KEY(56),
+  KEY_CAPS_LOCK = KEY(57),
 };
 
 #endif
