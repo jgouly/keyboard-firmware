@@ -98,6 +98,7 @@ void copy_rom_to_ram() {
 
 static void init_clocks() {
   MCG_MC |= MCG_MC_HIRCEN;
+  MCG_C1 &= ~MCG_C1_CLKS_HIRC;
   while ((MCG_S & MCG_S_CLKST) != 0)
     ;
 }
