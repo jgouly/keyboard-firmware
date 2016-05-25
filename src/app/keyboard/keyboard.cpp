@@ -16,7 +16,7 @@ void sendBuffer(const USBBuffer &buf);
 
 int app_main(const LayoutT &l, const MapT &map) {
   init_matrix(l);
-  ResultT prevResult;
+  ResultT prevResult = l.createResultMatrix();
   while (1) {
     USBBuffer buffer;
     ResultT result = scan(l);

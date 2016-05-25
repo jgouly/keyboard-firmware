@@ -18,6 +18,8 @@ public:
   unsigned getNumRows() const { return Rows; }
   unsigned getNumColumns() const { return Columns; }
 
+  const TestMatrix &operator[](unsigned index) const { return *this; }
+
   void dump() const {
     for (unsigned R = 0; R < Rows; ++R) {
       for (unsigned C = 0; C < Columns; ++C) {
