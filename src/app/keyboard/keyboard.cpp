@@ -17,10 +17,11 @@ void sendBuffer(const USBBuffer &buf);
 int app_main(const LayoutT &l, const MapT &map) {
   init_matrix(l);
   ResultT prevResult = l.createResultMatrix();
+  unsigned char activeLayers = 0;
   while (1) {
     USBBuffer buffer;
     ResultT result = scan(l);
-    processKeys(result, map, buffer, prevResult);
+    processKeys(result, map, buffer, prevResult, activeLayers);
     sendBuffer(buffer);
     prevResult = result;
   }

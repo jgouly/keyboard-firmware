@@ -5,6 +5,13 @@
 #include "common/USBBuffer.h"
 
 void processKeys(const ResultT &result, const MapT &map, USBBuffer &buffer,
-                 const ResultT &prevResult);
+                 const ResultT &prevResult, unsigned char &layeridx);
+
+enum class KeyState {
+  NONE,
+  PRESSED,
+  HELD,
+  RELEASED
+};
 
 #endif

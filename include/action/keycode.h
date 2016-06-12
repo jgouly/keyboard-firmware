@@ -11,6 +11,11 @@
 #define IS_MOD(M) (M & MOD_BIT)
 #define GET_MOD(M) (M & ~MOD_BIT)
 
+#define LAYER_BIT (1 << 11)
+#define TOGGLE_LAYER(L) (L | LAYER_BIT)
+#define IS_LAYER(L) (L & LAYER_BIT)
+#define GET_LAYER(L) (L & ~LAYER_BIT)
+
 enum USBKeyCode {
   KEY_NONE = 0,
 
@@ -69,6 +74,11 @@ enum USBKeyCode {
   KEY_PERIOD = KEY(55),
   KEY_SLASH = KEY(56),
   KEY_CAPS_LOCK = KEY(57),
+
+  KEY_RIGHT = KEY(79),
+  KEY_LEFT = KEY(80),
+  KEY_DOWN = KEY(81),
+  KEY_UP = KEY(82),
 };
 
 #endif

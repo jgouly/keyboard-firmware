@@ -2,15 +2,32 @@
 #include "action/keycode.h"
 
 void processKeys(const ResultT &result, const MapT &map, USBBuffer &buf,
-                 const ResultT &prevResult) {
+                 const ResultT &prevResult, unsigned char &activeLayers) {
   for (unsigned C = 0; C < result.getNumColumns(); ++C) {
     for (unsigned R = 0; R < result.getNumRows(); ++R) {
+      KeyState state = KeyState::NONE;
       if (result.get(C, R)) {
-        unsigned action = map[0].get(C, R);
+        if (prevResult.get(C, R)) {
+          state = KeyState::HELD;
+        } else {
+          state = KeyState::PRESSED;
+        }
+      } else {
+        if (prevResult.get(C, R)) {
+          state = KeyState::RELEASED;
+        }
+      }
+      if (state != KeyState::NONE) {
+        unsigned action = map[activeLayers].get(C, R);
         if (IS_KEY(action)) {
           buf.push_back(GET_KEY(action));
         } else if (IS_MOD(action)) {
           buf.push_mod(GET_MOD(action));
+        } else if (IS_LAYER(action)) {
+          if (state == KeyState::PRESSED)
+            activeLayers |= (1 << GET_LAYER(action));
+          else if (state == KeyState::RELEASED)
+            activeLayers &= ~(1 << GET_LAYER(action));
         }
       }
     }
