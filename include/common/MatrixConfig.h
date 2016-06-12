@@ -1,7 +1,7 @@
 #ifndef COMMON_MATRIX_CONFIG_H
 #define COMMON_MATRIX_CONFIG_H
 
-#include "common/matrix.h"
+#include "common/Matrix.h"
 
 template <unsigned Rows, unsigned Columns, class PinIT, class PinOT>
 class MatrixConfig {
