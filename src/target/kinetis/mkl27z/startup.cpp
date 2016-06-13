@@ -36,6 +36,16 @@ uint32_t micros(void) {
   return count * 1000 + ((current * (uint32_t)87381) >> 22);
 }
 
+typedef void (*boot_fn)(void *);
+void bootloader_start() {
+  uint32_t const kbootloader_start_address = **(uint32_t **)(0x1C00001CUL);
+  boot_fn kbootloader_start = (boot_fn)kbootloader_start_address;
+  kbootloader_start(nullptr);
+  __builtin_unreachable();
+}
+
+extern "C" void nmi_isr() { bootloader_start(); }
+
 void msdelay(uint32_t ms) {
   uint32_t start = micros();
 
