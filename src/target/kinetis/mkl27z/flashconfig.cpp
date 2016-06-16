@@ -6,7 +6,11 @@ const uint8_t flashconfigbytes[16] = {
     // 4-byte FPROT.
     0xFF, 0xFF, 0xFF, 0xFF,
     // 2-bytes reserved.
+#ifdef ALWAYS_RUN_KBOOT
     0xFE, 0xFF,
+#else
+    0xFC, 0x3F,
+#endif
     // 1-byte FOPT.
     0xFF,
     // 1-byte FSEC.
