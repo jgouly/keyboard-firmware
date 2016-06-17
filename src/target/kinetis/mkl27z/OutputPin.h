@@ -8,6 +8,8 @@ public:
   MKL27ZOutputPin(unsigned N) : Num(N) {}
   unsigned pinToPortNum() const {
     switch (Num) {
+    case 17:
+      return 29;
     case 18:
       return 30;
     case 19:
@@ -50,6 +52,10 @@ public:
 
   void init() const {
     switch (Num) {
+    case 17:
+      PORTE_PCR29 |= PORT_PCR_MUX(1);
+      GPIOE_PDDR |= (1 << 29);
+      break;
     case 18:
       PORTE_PCR30 |= PORT_PCR_MUX(1);
       GPIOE_PDDR |= (1 << 30);
@@ -129,6 +135,7 @@ public:
 
   void outputLow() const {
     switch (Num) {
+    case 17:
     case 18:
     case 19:
     case 20:
@@ -160,6 +167,7 @@ public:
 
   void outputHigh() const {
     switch (Num) {
+    case 17:
     case 18:
     case 19:
     case 20:

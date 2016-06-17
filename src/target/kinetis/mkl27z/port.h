@@ -34,14 +34,15 @@
 #define PORTD_PCR5 p_addr32(0x4004C014)
 #define PORTD_PCR6 p_addr32(0x4004C018)
 #define PORTD_PCR7 p_addr32(0x4004C01C)
-#define PORTE_PCR30 p_addr32(0x4004D078)
-#define PORTE_PCR31 p_addr32(0x4004D07C)
 
 #define PORTE_PCR20 p_addr32(0x4004D050)
 #define PORTE_PCR21 p_addr32(0x4004D054)
 #define PORTE_PCR23 p_addr32(0x4004D05C)
 #define PORTE_PCR24 p_addr32(0x4004D060)
 #define PORTE_PCR25 p_addr32(0x4004D064)
+#define PORTE_PCR29 p_addr32(0x4004D074)
+#define PORTE_PCR30 p_addr32(0x4004D078)
+#define PORTE_PCR31 p_addr32(0x4004D07C)
 
 #define GPIOA_PDDR p_addr32(0x400FF014)
 #define GPIOB_PDDR p_addr32(0x400FF054)

@@ -8,6 +8,8 @@
 #define COLUMNS 15
 #define ROWS 5
 
+constexpr unsigned DEBUG_LED = 17;
+
 using LayoutT = MatrixConfig<ROWS, COLUMNS, MKL27ZInputPin, MKL27ZOutputPin>;
 using ResultT = Matrix<unsigned, ROWS, COLUMNS>;
 using LayerT = Matrix<unsigned, ROWS, COLUMNS>;
