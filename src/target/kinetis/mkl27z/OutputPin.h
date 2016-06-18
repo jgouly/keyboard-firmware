@@ -54,81 +54,81 @@ public:
     switch (Num) {
     case 17:
       PORTE_PCR29 |= PORT_PCR_MUX(1);
-      GPIOE_PDDR |= (1 << 29);
+      GPIOE_PDDR |= (1 << pinToPortNum());
       break;
     case 18:
       PORTE_PCR30 |= PORT_PCR_MUX(1);
-      GPIOE_PDDR |= (1 << 30);
+      GPIOE_PDDR |= (1 << pinToPortNum());
       break;
     case 19:
       PORTE_PCR31 |= PORT_PCR_MUX(1);
-      GPIOE_PDDR |= (1 << 31);
+      GPIOE_PDDR |= (1 << pinToPortNum());
       break;
     case 20:
       PORTE_PCR24 |= PORT_PCR_MUX(1);
-      GPIOE_PDDR |= (1 << 24);
+      GPIOE_PDDR |= (1 << pinToPortNum());
       break;
     case 21:
       PORTE_PCR25 |= PORT_PCR_MUX(1);
-      GPIOE_PDDR |= (1 << 25);
+      GPIOE_PDDR |= (1 << pinToPortNum());
       break;
     case 36:
       // PTB1 is used by the ROM bootloader, so need to clear the MUX bits.
       PORTB_PCR1 = ((PORTB_PCR1 & ~0x700) | PORT_PCR_MUX(1));
-      GPIOB_PDDR |= (1 << 1);
+      GPIOB_PDDR |= (1 << pinToPortNum());
       break;
 
     case 38:
       PORTB_PCR3 |= PORT_PCR_MUX(1);
-      GPIOB_PDDR |= (1 << 3);
+      GPIOB_PDDR |= (1 << pinToPortNum());
       break;
     case 39:
       PORTB_PCR16 |= PORT_PCR_MUX(1);
-      GPIOB_PDDR |= (1 << 16);
+      GPIOB_PDDR |= (1 << pinToPortNum());
       break;
     case 40:
       PORTB_PCR17 |= PORT_PCR_MUX(1);
-      GPIOB_PDDR |= (1 << 17);
+      GPIOB_PDDR |= (1 << pinToPortNum());
       break;
     case 41:
       PORTB_PCR18 |= PORT_PCR_MUX(1);
-      GPIOB_PDDR |= (1 << 18);
+      GPIOB_PDDR |= (1 << pinToPortNum());
       break;
     case 42:
       PORTB_PCR19 |= PORT_PCR_MUX(1);
-      GPIOB_PDDR |= (1 << 19);
+      GPIOB_PDDR |= (1 << pinToPortNum());
       break;
     case 43:
       PORTC_PCR0 |= PORT_PCR_MUX(1);
-      GPIOC_PDDR |= (1 << 0);
+      GPIOC_PDDR |= (1 << pinToPortNum());
       break;
     case 44:
       PORTC_PCR1 |= PORT_PCR_MUX(1);
-      GPIOC_PDDR |= (1 << 1);
+      GPIOC_PDDR |= (1 << pinToPortNum());
       break;
 
     case 45:
       PORTC_PCR2 |= PORT_PCR_MUX(1);
-      GPIOC_PDDR |= (1 << 2);
+      GPIOC_PDDR |= (1 << pinToPortNum());
       break;
 
     case 57:
       PORTD_PCR0 |= PORT_PCR_MUX(1);
-      GPIOD_PDDR |= (1 << 0);
+      GPIOD_PDDR |= (1 << pinToPortNum());
       break;
 
     case 62:
       PORTD_PCR5 |= PORT_PCR_MUX(1);
-      GPIOD_PDDR |= (1 << 5);
+      GPIOD_PDDR |= (1 << pinToPortNum());
       break;
     case 63:
       PORTD_PCR6 |= PORT_PCR_MUX(1);
-      GPIOD_PDDR |= (1 << 6);
+      GPIOD_PDDR |= (1 << pinToPortNum());
       break;
 
     case 64:
       PORTD_PCR7 |= PORT_PCR_MUX(1);
-      GPIOD_PDDR |= (1 << 7);
+      GPIOD_PDDR |= (1 << pinToPortNum());
       break;
     }
   }
