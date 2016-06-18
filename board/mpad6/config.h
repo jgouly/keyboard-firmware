@@ -5,8 +5,8 @@
 #include "mkl27z/InputPin.h"
 #include "mkl27z/OutputPin.h"
 
-#define COLUMNS 3
-#define ROWS 2
+constexpr unsigned COLUMNS = 3;
+constexpr unsigned ROWS = 2;
 
 using LayoutT = MatrixConfig<ROWS, COLUMNS, MKL27ZInputPin, MKL27ZOutputPin>;
 using ResultT = Matrix<unsigned, ROWS, COLUMNS>;

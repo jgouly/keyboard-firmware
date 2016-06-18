@@ -5,8 +5,8 @@
 #include "mkl27z/InputPin.h"
 #include "mkl27z/OutputPin.h"
 
-#define COLUMNS 15
-#define ROWS 5
+constexpr unsigned COLUMNS = 15;
+constexpr unsigned ROWS = 5;
 
 constexpr unsigned DEBUG_LED = 17;
 
