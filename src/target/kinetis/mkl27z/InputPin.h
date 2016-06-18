@@ -14,39 +14,39 @@ public:
     case 12:
       PORTE_PCR23 |= PORT_PCR_MUX(1) | PORT_PCR_PE;
       PORTE_PCR23 &= ~PORT_PCR_PS;
-      GPIOE_PDDR &= ~(1 << 23);
+      GPIOE_PDDR &= ~(1 << pinToPortNum());
       break;
 
     case 33:
       PORTA_PCR19 |= PORT_PCR_MUX(1) | (1 << 1);
-      PORTA_PCR19 &= ~(1 << 0);
-      GPIOA_PDDR &= ~(1 << 19);
+      PORTA_PCR19 &= ~PORT_PCR_PS;
+      GPIOA_PDDR &= ~(1 << pinToPortNum());
       break;
     case 35:
       PORTB_PCR0 |= PORT_PCR_MUX(1) | (1 << 1);
-      PORTB_PCR0 &= ~(1 << 0);
-      GPIOB_PDDR &= ~(1 << 0);
+      PORTB_PCR0 &= ~PORT_PCR_PS;
+      GPIOB_PDDR &= ~(1 << pinToPortNum());
       break;
     case 36:
       PORTB_PCR1 |= PORT_PCR_MUX(1) | (1 << 1);
-      PORTB_PCR1 &= ~(1 << 0);
-      GPIOB_PDDR &= ~(1 << 1);
+      PORTB_PCR1 &= ~PORT_PCR_PS;
+      GPIOB_PDDR &= ~(1 << pinToPortNum());
       break;
     case 37:
       PORTB_PCR2 |= PORT_PCR_MUX(1) | (1 << 1);
-      PORTB_PCR2 &= ~(1 << 0);
-      GPIOB_PDDR &= ~(1 << 2);
+      PORTB_PCR2 &= ~PORT_PCR_PS;
+      GPIOB_PDDR &= ~(1 << pinToPortNum());
       break;
     case 49:
       PORTC_PCR4 |= PORT_PCR_MUX(1) | (1 << 1);
-      PORTC_PCR4 &= ~(1 << 0);
-      GPIOC_PDDR &= ~(1 << 4);
+      PORTC_PCR4 &= ~PORT_PCR_PS;
+      GPIOC_PDDR &= ~(1 << pinToPortNum());
       break;
 
     case 54:
       PORTC_PCR9 |= PORT_PCR_MUX(1) | PORT_PCR_PE;
       PORTC_PCR9 &= ~PORT_PCR_PS;
-      GPIOC_PDDR &= ~(1 << 9);
+      GPIOC_PDDR &= ~(1 << pinToPortNum());
       break;
     }
   }
