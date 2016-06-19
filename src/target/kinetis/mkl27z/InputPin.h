@@ -3,7 +3,6 @@
 
 #include "port.h"
 typedef unsigned int uint32_t;
-#define p_addr32(addr) (*(volatile uint32_t *)addr)
 
 class MKL27ZInputPin {
 public:
@@ -27,42 +26,21 @@ private:
 };
 
 #define PI12                                                                   \
-  {                                                                            \
-    23, (volatile uint32_t *)0x4004D05C, (volatile uint32_t *)0x400FF114,      \
-        (volatile uint32_t *)0x400FF110                                        \
-  }
+  { 23, PORTE_PCR23, GPIOE_PDDR, GPIOE_PDIR }
 
 #define PI33                                                                   \
-  {                                                                            \
-    19, (volatile uint32_t *)0x4004904C, (volatile uint32_t *)0x400FF014,      \
-        (volatile uint32_t *)0x400FF010                                        \
-  }
+  { 19, PORTA_PCR19, GPIOA_PDDR, GPIOA_PDIR }
 
 #define PI35                                                                   \
-  {                                                                            \
-    0, (volatile uint32_t *)0x4004A000, (volatile uint32_t *)0x400FF054,       \
-        (volatile uint32_t *)0x400FF050                                        \
-  }
+  { 0, PORTB_PCR0, GPIOB_PDDR, GPIOB_PDIR }
 #define PI36                                                                   \
-  {                                                                            \
-    1, (volatile uint32_t *)0x4004A004, (volatile uint32_t *)0x400FF054,       \
-        (volatile uint32_t *)0x400FF050                                        \
-  }
+  { 1, PORTB_PCR1, GPIOB_PDDR, GPIOB_PDIR }
 #define PI37                                                                   \
-  {                                                                            \
-    2, (volatile uint32_t *)0x4004A008, (volatile uint32_t *)0x400FF054,       \
-        (volatile uint32_t *)0x400FF050                                        \
-  }
+  { 2, PORTB_PCR2, GPIOB_PDDR, GPIOB_PDIR }
 
 #define PI49                                                                   \
-  {                                                                            \
-    4, (volatile uint32_t *)0x4004B010, (volatile uint32_t *)0x400FF094,       \
-        (volatile uint32_t *)0x400FF090                                        \
-  }
+  { 4, PORTC_PCR4, GPIOC_PDDR, GPIOC_PDIR }
 #define PI54                                                                   \
-  {                                                                            \
-    9, (volatile uint32_t *)0x4004B024, (volatile uint32_t *)0x400FF094,       \
-        (volatile uint32_t *)0x400FF090                                        \
-  }
+  { 9, PORTC_PCR9, GPIOC_PDDR, GPIOC_PDIR }
 
 #endif

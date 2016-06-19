@@ -28,97 +28,43 @@ private:
 };
 
 #define P17                                                                    \
-  {                                                                            \
-    29, (volatile uint32_t *)0x400FF104, (volatile uint32_t *)0x400FF108,      \
-        (volatile uint32_t *)0x400FF114, (volatile uint32_t *)0x4004D074       \
-  }
+  { 29, GPIOE_PSOR, GPIOE_PCOR, GPIOE_PDDR, PORTE_PCR29 }
 #define P18                                                                    \
-  {                                                                            \
-    30, (volatile uint32_t *)0x400FF104, (volatile uint32_t *)0x400FF108,      \
-        (volatile uint32_t *)0x400FF114, (volatile uint32_t *)0x4004D078       \
-  }
+  { 30, GPIOE_PSOR, GPIOE_PCOR, GPIOE_PDDR, PORTE_PCR30 }
 #define P19                                                                    \
-  {                                                                            \
-    31, (volatile uint32_t *)0x400FF104, (volatile uint32_t *)0x400FF108,      \
-        (volatile uint32_t *)0x400FF114, (volatile uint32_t *)0x4004D07C       \
-  }
+  { 31, GPIOE_PSOR, GPIOE_PCOR, GPIOE_PDDR, PORTE_PCR31 }
 #define P20                                                                    \
-  {                                                                            \
-    24, (volatile uint32_t *)0x400FF104, (volatile uint32_t *)0x400FF108,      \
-        (volatile uint32_t *)0x400FF114, (volatile uint32_t *)0x4004D060       \
-  }
+  { 24, GPIOE_PSOR, GPIOE_PCOR, GPIOE_PDDR, PORTE_PCR24 }
 #define P21                                                                    \
-  {                                                                            \
-    25, (volatile uint32_t *)0x400FF104, (volatile uint32_t *)0x400FF108,      \
-        (volatile uint32_t *)0x400FF114, (volatile uint32_t *)0x4004D064       \
-  }
+  { 25, GPIOE_PSOR, GPIOE_PCOR, GPIOE_PDDR, PORTE_PCR25 }
 
 #define P36                                                                    \
-  {                                                                            \
-    1, (volatile uint32_t *)0x400FF044, (volatile uint32_t *)0x400FF048,       \
-        (volatile uint32_t *)0x400FF054, (volatile uint32_t *)0x4004A004       \
-  }
+  { 1, GPIOB_PSOR, GPIOB_PCOR, GPIOB_PDDR, PORTB_PCR1 }
 #define P38                                                                    \
-  {                                                                            \
-    3, (volatile uint32_t *)0x400FF044, (volatile uint32_t *)0x400FF048,       \
-        (volatile uint32_t *)0x400FF054, (volatile uint32_t *)0x4004A00C       \
-  }
+  { 3, GPIOB_PSOR, GPIOB_PCOR, GPIOB_PDDR, PORTB_PCR3 }
 #define P39                                                                    \
-  {                                                                            \
-    16, (volatile uint32_t *)0x400FF044, (volatile uint32_t *)0x400FF048,      \
-        (volatile uint32_t *)0x400FF054, (volatile uint32_t *)0x4004A040       \
-  }
+  { 16, GPIOB_PSOR, GPIOB_PCOR, GPIOB_PDDR, PORTB_PCR16 }
 #define P40                                                                    \
-  {                                                                            \
-    17, (volatile uint32_t *)0x400FF044, (volatile uint32_t *)0x400FF048,      \
-        (volatile uint32_t *)0x400FF054, (volatile uint32_t *)0x4004A044       \
-  }
+  { 17, GPIOB_PSOR, GPIOB_PCOR, GPIOB_PDDR, PORTB_PCR17 }
 #define P41                                                                    \
-  {                                                                            \
-    18, (volatile uint32_t *)0x400FF044, (volatile uint32_t *)0x400FF048,      \
-        (volatile uint32_t *)0x400FF054, (volatile uint32_t *)0x4004A048       \
-  }
+  { 18, GPIOB_PSOR, GPIOB_PCOR, GPIOB_PDDR, PORTB_PCR18 }
 #define P42                                                                    \
-  {                                                                            \
-    19, (volatile uint32_t *)0x400FF044, (volatile uint32_t *)0x400FF048,      \
-        (volatile uint32_t *)0x400FF054, (volatile uint32_t *)0x4004A04C       \
-  }
+  { 19, GPIOB_PSOR, GPIOB_PCOR, GPIOB_PDDR, PORTB_PCR19 }
 
 #define P43                                                                    \
-  {                                                                            \
-    0, (volatile uint32_t *)0x400FF084, (volatile uint32_t *)0x400FF088,       \
-        (volatile uint32_t *)0x400FF094, (volatile uint32_t *)0x4004B000       \
-  }
+  { 0, GPIOC_PSOR, GPIOC_PCOR, GPIOC_PDDR, PORTC_PCR0 }
 #define P44                                                                    \
-  {                                                                            \
-    1, (volatile uint32_t *)0x400FF084, (volatile uint32_t *)0x400FF088,       \
-        (volatile uint32_t *)0x400FF094, (volatile uint32_t *)0x4004B004       \
-  }
+  { 1, GPIOC_PSOR, GPIOC_PCOR, GPIOC_PDDR, PORTC_PCR1 }
 #define P45                                                                    \
-  {                                                                            \
-    2, (volatile uint32_t *)0x400FF084, (volatile uint32_t *)0x400FF088,       \
-        (volatile uint32_t *)0x400FF094, (volatile uint32_t *)0x4004B008       \
-  }
+  { 2, GPIOC_PSOR, GPIOC_PCOR, GPIOC_PDDR, PORTC_PCR2 }
 
 #define P57                                                                    \
-  {                                                                            \
-    0, (volatile uint32_t *)0x400FF0C4, (volatile uint32_t *)0x400FF0C8,       \
-        (volatile uint32_t *)0x400FF0D4, (volatile uint32_t *)0x4004C000       \
-  }
+  { 0, GPIOD_PSOR, GPIOD_PCOR, GPIOD_PDDR, PORTD_PCR0 }
 #define P62                                                                    \
-  {                                                                            \
-    5, (volatile uint32_t *)0x400FF0C4, (volatile uint32_t *)0x400FF0C8,       \
-        (volatile uint32_t *)0x400FF0D4, (volatile uint32_t *)0x4004C014       \
-  }
+  { 5, GPIOD_PSOR, GPIOD_PCOR, GPIOD_PDDR, PORTD_PCR5 }
 #define P63                                                                    \
-  {                                                                            \
-    6, (volatile uint32_t *)0x400FF0C4, (volatile uint32_t *)0x400FF0C8,       \
-        (volatile uint32_t *)0x400FF0D4, (volatile uint32_t *)0x4004C018       \
-  }
+  { 6, GPIOD_PSOR, GPIOD_PCOR, GPIOD_PDDR, PORTD_PCR6 }
 #define P64                                                                    \
-  {                                                                            \
-    7, (volatile uint32_t *)0x400FF0C4, (volatile uint32_t *)0x400FF0C8,       \
-        (volatile uint32_t *)0x400FF0D4, (volatile uint32_t *)0x4004C01C       \
-  }
+  { 7, GPIOD_PSOR, GPIOD_PCOR, GPIOD_PDDR, PORTD_PCR7 }
 
 #endif

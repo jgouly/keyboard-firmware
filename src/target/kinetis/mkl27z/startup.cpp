@@ -4,7 +4,6 @@ typedef unsigned char uint8_t;
 #include "config.h"
 #include "lpuart.h"
 #include "mcg.h"
-#include "port.h"
 #include "scb.h"
 #include "sim.h"
 #include "systick.h"
