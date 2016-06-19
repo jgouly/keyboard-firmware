@@ -1,7 +1,7 @@
 #include "action/action.h"
 #include "scan/scan.h"
 
-static void init_matrix(const LayoutT &l) {
+static void initMatrixPins(const LayoutT &l) {
   for (unsigned R = 0; R < l.getNumRows(); ++R) {
     auto &rowPin = l.getRowPin(R);
     rowPin.init();
@@ -15,7 +15,7 @@ static void init_matrix(const LayoutT &l) {
 void sendBuffer(const USBBuffer &buf);
 
 int app_main(const LayoutT &l, const MapT &map) {
-  init_matrix(l);
+  initMatrixPins(l);
   ResultT prevResult = l.createResultMatrix();
   unsigned char activeLayers = 0;
   while (1) {
