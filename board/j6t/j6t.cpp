@@ -1,7 +1,7 @@
 #include "config.h"
 #include "action/keycode.h"
 
-const MKL27ZOutputPin mkl27zColumnPins[] = {62, 63, 64, 19, 18, 21, 20, 44, 43, 42, 41, 40, 39, 38, 45};
+const MKL27ZOutputPin mkl27zColumnPins[] = {P62, P63, P64, P19, P18, P21, P20, P44, P43, P42, P41, P40, P39, P38, P45};
 const MKL27ZInputPin mkl27zRowPins[] = {33, 35, 36, 37, 49};
 
 KEYMAP({

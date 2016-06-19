@@ -5,200 +5,120 @@
 
 class MKL27ZOutputPin {
 public:
-  MKL27ZOutputPin(unsigned N) : Num(N) {}
-  unsigned pinToPortNum() const {
-    switch (Num) {
-    case 17:
-      return 29;
-    case 18:
-      return 30;
-    case 19:
-      return 31;
-    case 20:
-      return 24;
-    case 21:
-      return 25;
-    case 36:
-      return 1;
-
-    case 38:
-      return 3;
-    case 39:
-      return 16;
-    case 40:
-      return 17;
-    case 41:
-      return 18;
-    case 42:
-      return 19;
-    case 43:
-      return 0;
-    case 44:
-      return 1;
-
-
-    case 45:
-      return 2;
-    case 57:
-      return 0;
-    case 62:
-      return 5;
-    case 63:
-      return 6;
-    case 64:
-      return 7;
-    }
-  }
+  MKL27ZOutputPin(unsigned PortNum, volatile uint32_t *const PSOR,
+                  volatile uint32_t *const PCOR, volatile uint32_t *const PDDR,
+                  volatile uint32_t *const PORT)
+      : PortNum(PortNum), PSOR(PSOR), PCOR(PCOR), PDDR(PDDR), PORT(PORT) {}
 
   void init() const {
-    switch (Num) {
-    case 17:
-      PORTE_PCR29 |= PORT_PCR_MUX(1);
-      GPIOE_PDDR |= (1 << pinToPortNum());
-      break;
-    case 18:
-      PORTE_PCR30 |= PORT_PCR_MUX(1);
-      GPIOE_PDDR |= (1 << pinToPortNum());
-      break;
-    case 19:
-      PORTE_PCR31 |= PORT_PCR_MUX(1);
-      GPIOE_PDDR |= (1 << pinToPortNum());
-      break;
-    case 20:
-      PORTE_PCR24 |= PORT_PCR_MUX(1);
-      GPIOE_PDDR |= (1 << pinToPortNum());
-      break;
-    case 21:
-      PORTE_PCR25 |= PORT_PCR_MUX(1);
-      GPIOE_PDDR |= (1 << pinToPortNum());
-      break;
-    case 36:
-      // PTB1 is used by the ROM bootloader, so need to clear the MUX bits.
-      PORTB_PCR1 = ((PORTB_PCR1 & ~0x700) | PORT_PCR_MUX(1));
-      GPIOB_PDDR |= (1 << pinToPortNum());
-      break;
-
-    case 38:
-      PORTB_PCR3 |= PORT_PCR_MUX(1);
-      GPIOB_PDDR |= (1 << pinToPortNum());
-      break;
-    case 39:
-      PORTB_PCR16 |= PORT_PCR_MUX(1);
-      GPIOB_PDDR |= (1 << pinToPortNum());
-      break;
-    case 40:
-      PORTB_PCR17 |= PORT_PCR_MUX(1);
-      GPIOB_PDDR |= (1 << pinToPortNum());
-      break;
-    case 41:
-      PORTB_PCR18 |= PORT_PCR_MUX(1);
-      GPIOB_PDDR |= (1 << pinToPortNum());
-      break;
-    case 42:
-      PORTB_PCR19 |= PORT_PCR_MUX(1);
-      GPIOB_PDDR |= (1 << pinToPortNum());
-      break;
-    case 43:
-      PORTC_PCR0 |= PORT_PCR_MUX(1);
-      GPIOC_PDDR |= (1 << pinToPortNum());
-      break;
-    case 44:
-      PORTC_PCR1 |= PORT_PCR_MUX(1);
-      GPIOC_PDDR |= (1 << pinToPortNum());
-      break;
-
-    case 45:
-      PORTC_PCR2 |= PORT_PCR_MUX(1);
-      GPIOC_PDDR |= (1 << pinToPortNum());
-      break;
-
-    case 57:
-      PORTD_PCR0 |= PORT_PCR_MUX(1);
-      GPIOD_PDDR |= (1 << pinToPortNum());
-      break;
-
-    case 62:
-      PORTD_PCR5 |= PORT_PCR_MUX(1);
-      GPIOD_PDDR |= (1 << pinToPortNum());
-      break;
-    case 63:
-      PORTD_PCR6 |= PORT_PCR_MUX(1);
-      GPIOD_PDDR |= (1 << pinToPortNum());
-      break;
-
-    case 64:
-      PORTD_PCR7 |= PORT_PCR_MUX(1);
-      GPIOD_PDDR |= (1 << pinToPortNum());
-      break;
-    }
+    *PORT = ((*PORT & ~0x700)) | PORT_PCR_MUX(1);
+    *PDDR |= (1 << PortNum);
   }
 
-  void outputLow() const {
-    switch (Num) {
-    case 17:
-    case 18:
-    case 19:
-    case 20:
-    case 21:
-      GPIOE_PCOR |= (1 << pinToPortNum());
-      break;
+  void outputLow() const { *PCOR |= (1 << PortNum); }
 
-    case 36:
-    case 38:
-    case 39:
-    case 40:
-    case 41:
-    case 42:
-      GPIOB_PCOR |= (1 << pinToPortNum());
-      break;
-    case 43:
-    case 44:
-    case 45:
-      GPIOC_PCOR |= (1 << pinToPortNum());
-      break;
-    case 57:
-    case 62:
-    case 63:
-    case 64:
-      GPIOD_PCOR |= (1 << pinToPortNum());
-      break;
-    }
-  }
-
-  void outputHigh() const {
-    switch (Num) {
-    case 17:
-    case 18:
-    case 19:
-    case 20:
-    case 21:
-      GPIOE_PSOR |= (1 << pinToPortNum());
-      break;
-    case 36:
-    case 38:
-    case 39:
-    case 40:
-    case 41:
-    case 42:
-      GPIOB_PSOR |= (1 << pinToPortNum());
-      break;
-
-    case 43:
-    case 44:
-    case 45:
-      GPIOC_PSOR |= (1 << pinToPortNum());
-      break;
-    case 57:
-    case 62:
-    case 63:
-    case 64:
-      GPIOD_PSOR |= (1 << pinToPortNum());
-      break;
-    }
-  }
+  void outputHigh() const { *PSOR |= (1 << PortNum); }
 
 private:
-  unsigned Num;
+  unsigned PortNum;
+  volatile uint32_t *const PSOR;
+  volatile uint32_t *const PCOR;
+  volatile uint32_t *const PDDR;
+  volatile uint32_t *const PORT;
 };
+
+#define P17                                                                    \
+  {                                                                            \
+    29, (volatile uint32_t *)0x400FF104, (volatile uint32_t *)0x400FF108,      \
+        (volatile uint32_t *)0x400FF114, (volatile uint32_t *)0x4004D074       \
+  }
+#define P18                                                                    \
+  {                                                                            \
+    30, (volatile uint32_t *)0x400FF104, (volatile uint32_t *)0x400FF108,      \
+        (volatile uint32_t *)0x400FF114, (volatile uint32_t *)0x4004D078       \
+  }
+#define P19                                                                    \
+  {                                                                            \
+    31, (volatile uint32_t *)0x400FF104, (volatile uint32_t *)0x400FF108,      \
+        (volatile uint32_t *)0x400FF114, (volatile uint32_t *)0x4004D07C       \
+  }
+#define P20                                                                    \
+  {                                                                            \
+    24, (volatile uint32_t *)0x400FF104, (volatile uint32_t *)0x400FF108,      \
+        (volatile uint32_t *)0x400FF114, (volatile uint32_t *)0x4004D060       \
+  }
+#define P21                                                                    \
+  {                                                                            \
+    25, (volatile uint32_t *)0x400FF104, (volatile uint32_t *)0x400FF108,      \
+        (volatile uint32_t *)0x400FF114, (volatile uint32_t *)0x4004D064       \
+  }
+
+#define P36                                                                    \
+  {                                                                            \
+    1, (volatile uint32_t *)0x400FF044, (volatile uint32_t *)0x400FF048,       \
+        (volatile uint32_t *)0x400FF054, (volatile uint32_t *)0x4004A004       \
+  }
+#define P38                                                                    \
+  {                                                                            \
+    3, (volatile uint32_t *)0x400FF044, (volatile uint32_t *)0x400FF048,       \
+        (volatile uint32_t *)0x400FF054, (volatile uint32_t *)0x4004A00C       \
+  }
+#define P39                                                                    \
+  {                                                                            \
+    16, (volatile uint32_t *)0x400FF044, (volatile uint32_t *)0x400FF048,      \
+        (volatile uint32_t *)0x400FF054, (volatile uint32_t *)0x4004A040       \
+  }
+#define P40                                                                    \
+  {                                                                            \
+    17, (volatile uint32_t *)0x400FF044, (volatile uint32_t *)0x400FF048,      \
+        (volatile uint32_t *)0x400FF054, (volatile uint32_t *)0x4004A044       \
+  }
+#define P41                                                                    \
+  {                                                                            \
+    18, (volatile uint32_t *)0x400FF044, (volatile uint32_t *)0x400FF048,      \
+        (volatile uint32_t *)0x400FF054, (volatile uint32_t *)0x4004A048       \
+  }
+#define P42                                                                    \
+  {                                                                            \
+    19, (volatile uint32_t *)0x400FF044, (volatile uint32_t *)0x400FF048,      \
+        (volatile uint32_t *)0x400FF054, (volatile uint32_t *)0x4004A04C       \
+  }
+
+#define P43                                                                    \
+  {                                                                            \
+    0, (volatile uint32_t *)0x400FF084, (volatile uint32_t *)0x400FF088,       \
+        (volatile uint32_t *)0x400FF094, (volatile uint32_t *)0x4004B000       \
+  }
+#define P44                                                                    \
+  {                                                                            \
+    1, (volatile uint32_t *)0x400FF084, (volatile uint32_t *)0x400FF088,       \
+        (volatile uint32_t *)0x400FF094, (volatile uint32_t *)0x4004B004       \
+  }
+#define P45                                                                    \
+  {                                                                            \
+    2, (volatile uint32_t *)0x400FF084, (volatile uint32_t *)0x400FF088,       \
+        (volatile uint32_t *)0x400FF094, (volatile uint32_t *)0x4004B008       \
+  }
+
+#define P57                                                                    \
+  {                                                                            \
+    0, (volatile uint32_t *)0x400FF0C4, (volatile uint32_t *)0x400FF0C8,       \
+        (volatile uint32_t *)0x400FF0D4, (volatile uint32_t *)0x4004C000       \
+  }
+#define P62                                                                    \
+  {                                                                            \
+    5, (volatile uint32_t *)0x400FF0C4, (volatile uint32_t *)0x400FF0C8,       \
+        (volatile uint32_t *)0x400FF0D4, (volatile uint32_t *)0x4004C014       \
+  }
+#define P63                                                                    \
+  {                                                                            \
+    6, (volatile uint32_t *)0x400FF0C4, (volatile uint32_t *)0x400FF0C8,       \
+        (volatile uint32_t *)0x400FF0D4, (volatile uint32_t *)0x4004C018       \
+  }
+#define P64                                                                    \
+  {                                                                            \
+    7, (volatile uint32_t *)0x400FF0C4, (volatile uint32_t *)0x400FF0C8,       \
+        (volatile uint32_t *)0x400FF0D4, (volatile uint32_t *)0x4004C01C       \
+  }
 
 #endif
