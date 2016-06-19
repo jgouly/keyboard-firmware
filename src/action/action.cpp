@@ -1,7 +1,9 @@
 #include "action/action.h"
 #include "action/keycode.h"
 
-int msb(unsigned int v) { return v == 0 ? 0 : 32 - __builtin_clz(v); }
+static unsigned msb(unsigned int v) {
+  return v == 0 ? 0 : 32 - __builtin_clz(v);
+}
 
 void processKeys(const ResultT &result, const MapT &map, USBBuffer &buf,
                  const ResultT &prevResult, unsigned char &activeLayers) {
