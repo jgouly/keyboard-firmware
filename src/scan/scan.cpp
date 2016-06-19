@@ -16,9 +16,11 @@ static ResultT singleScan(LayoutT l) {
   return result;
 }
 
+constexpr unsigned DEBOUNCE_MS = 4;
+
 ResultT scan(LayoutT l) {
   ResultT r0 = singleScan(l);
-  msdelay(4);
+  msdelay(DEBOUNCE_MS);
   ResultT r1 = singleScan(l);
   ResultT result = l.createResultMatrix();
   for (unsigned C = 0; C < l.getNumColumns(); ++C) {
