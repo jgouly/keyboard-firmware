@@ -5,9 +5,7 @@ int putchar(int c);
 
 template <typename T, int Rows, int Columns> class Matrix {
 public:
-  void put(unsigned C, unsigned R, T val) {
-    data[C + (R * Columns)] = val;
-  }
+  void put(unsigned C, unsigned R, T val) { data[C + (R * Columns)] = val; }
 
   T get(unsigned C, unsigned R) const { return data[C + (R * Columns)]; }
 
