@@ -7,91 +7,62 @@ typedef unsigned int uint32_t;
 
 class MKL27ZInputPin {
 public:
-  MKL27ZInputPin(unsigned N) : Num(N) {}
+  MKL27ZInputPin(unsigned PortNum, volatile uint32_t *const PORT,
+                 volatile uint32_t *const PDDR, volatile uint32_t *const PDIR)
+      : PortNum(PortNum), PORT(PORT), PDDR(PDDR), PDIR(PDIR) {}
 
   void init() const {
-    switch (Num) {
-    case 12:
-      PORTE_PCR23 |= PORT_PCR_MUX(1) | PORT_PCR_PE;
-      PORTE_PCR23 &= ~PORT_PCR_PS;
-      GPIOE_PDDR &= ~(1 << pinToPortNum());
-      break;
-
-    case 33:
-      PORTA_PCR19 |= PORT_PCR_MUX(1) | (1 << 1);
-      PORTA_PCR19 &= ~PORT_PCR_PS;
-      GPIOA_PDDR &= ~(1 << pinToPortNum());
-      break;
-    case 35:
-      PORTB_PCR0 |= PORT_PCR_MUX(1) | (1 << 1);
-      PORTB_PCR0 &= ~PORT_PCR_PS;
-      GPIOB_PDDR &= ~(1 << pinToPortNum());
-      break;
-    case 36:
-      PORTB_PCR1 |= PORT_PCR_MUX(1) | (1 << 1);
-      PORTB_PCR1 &= ~PORT_PCR_PS;
-      GPIOB_PDDR &= ~(1 << pinToPortNum());
-      break;
-    case 37:
-      PORTB_PCR2 |= PORT_PCR_MUX(1) | (1 << 1);
-      PORTB_PCR2 &= ~PORT_PCR_PS;
-      GPIOB_PDDR &= ~(1 << pinToPortNum());
-      break;
-    case 49:
-      PORTC_PCR4 |= PORT_PCR_MUX(1) | (1 << 1);
-      PORTC_PCR4 &= ~PORT_PCR_PS;
-      GPIOC_PDDR &= ~(1 << pinToPortNum());
-      break;
-
-    case 54:
-      PORTC_PCR9 |= PORT_PCR_MUX(1) | PORT_PCR_PE;
-      PORTC_PCR9 &= ~PORT_PCR_PS;
-      GPIOC_PDDR &= ~(1 << pinToPortNum());
-      break;
-    }
+    *PORT |= PORT_PCR_MUX(1) | PORT_PCR_PE;
+    *PORT &= ~PORT_PCR_PS;
+    *PDDR &= ~(1 << PortNum);
   }
 
-  unsigned pinToPortNum() const {
-    switch (Num) {
-    case 12:
-      return 23;
-    case 33:
-      return 19;
-    case 35:
-      return 0;
-    case 36:
-      return 1;
-    case 37:
-      return 2;
-    case 49:
-      return 4;
-    case 54:
-      return 9;
-    }
-  }
-
-  unsigned readInput() const {
-    switch (Num) {
-    case 12:
-      return (GPIOE_PDIR & (1 << pinToPortNum()) ? 1 : 0);
-      break;
-    case 33:
-      return (GPIOA_PDIR & (1 << pinToPortNum()) ? 1 : 0);
-      break;
-    case 35:
-    case 36:
-    case 37:
-      return (GPIOB_PDIR & (1 << pinToPortNum()) ? 1 : 0);
-      break;
-    case 49:
-    case 54:
-      return (GPIOC_PDIR & (1 << pinToPortNum()) ? 1 : 0);
-      break;
-    }
-  }
+  unsigned readInput() const { return ((*PDIR & (1 << PortNum)) ? 1 : 0); }
 
 private:
-  unsigned Num;
+  unsigned PortNum;
+  volatile uint32_t *const PORT;
+  volatile uint32_t *const PDDR;
+  volatile uint32_t *const PDIR;
 };
+
+#define PI12                                                                   \
+  {                                                                            \
+    23, (volatile uint32_t *)0x4004D05C, (volatile uint32_t *)0x400FF114,      \
+        (volatile uint32_t *)0x400FF110                                        \
+  }
+
+#define PI33                                                                   \
+  {                                                                            \
+    19, (volatile uint32_t *)0x4004904C, (volatile uint32_t *)0x400FF014,      \
+        (volatile uint32_t *)0x400FF010                                        \
+  }
+
+#define PI35                                                                   \
+  {                                                                            \
+    0, (volatile uint32_t *)0x4004A000, (volatile uint32_t *)0x400FF054,       \
+        (volatile uint32_t *)0x400FF050                                        \
+  }
+#define PI36                                                                   \
+  {                                                                            \
+    1, (volatile uint32_t *)0x4004A004, (volatile uint32_t *)0x400FF054,       \
+        (volatile uint32_t *)0x400FF050                                        \
+  }
+#define PI37                                                                   \
+  {                                                                            \
+    2, (volatile uint32_t *)0x4004A008, (volatile uint32_t *)0x400FF054,       \
+        (volatile uint32_t *)0x400FF050                                        \
+  }
+
+#define PI49                                                                   \
+  {                                                                            \
+    4, (volatile uint32_t *)0x4004B010, (volatile uint32_t *)0x400FF094,       \
+        (volatile uint32_t *)0x400FF090                                        \
+  }
+#define PI54                                                                   \
+  {                                                                            \
+    9, (volatile uint32_t *)0x4004B024, (volatile uint32_t *)0x400FF094,       \
+        (volatile uint32_t *)0x400FF090                                        \
+  }
 
 #endif
