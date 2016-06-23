@@ -4,7 +4,7 @@ project(firmware)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/bin)
 
-set(CMAKE_CXX_FLAGS "-std=c++11 -fno-rtti -fno-exceptions")
+set(CMAKE_CXX_FLAGS "-std=c++11 -fno-rtti -fno-exceptions -g")
 
 macro(set_global var val)
   set(${var} ${val})

@@ -1,9 +1,23 @@
 #include "action/action.h"
+//#include <iostream>
 #include "action/keycode.h"
+#include "action/map.h"
 
 static unsigned msb(unsigned int v) {
   return v == 0 ? 0 : 32 - __builtin_clz(v);
 }
+
+template< class T > struct remove_reference      {typedef T type;};
+template< class T > struct remove_reference<T&>  {typedef T type;};
+template< class T > struct remove_reference<T&&> {typedef T type;}; 
+
+KeyFn KEY_A1(GET_KEY(KEY_A));
+KeyFn KEY_B1('b');
+KeyFn KEY_C1('c');
+KeyFn KEY_D1('d');
+KeyFn KEY_E1('e');
+KeyFn KEY_F1('f');
+LayerKey L1(1);
 
 void processKeys(const ResultT &result, const MapT &map, USBBuffer &buf,
                  const ResultT &prevResult, unsigned char &activeLayers) {
@@ -22,7 +36,10 @@ void processKeys(const ResultT &result, const MapT &map, USBBuffer &buf,
         }
       }
       if (state != KeyState::NONE) {
-        unsigned action = map[msb(activeLayers)].get(C, R);
+        //remove_reference<decltype(map[0])>::type::value_type action = map[msb(activeLayers)].get(C, R);
+        auto action = map[msb(activeLayers)].get(C, R);
+        (*action)(buf, activeLayers, state);
+#if 0
         if (IS_KEY(action)) {
           buf.push_back(GET_KEY(action));
         } else if (IS_MOD(action)) {
@@ -33,6 +50,7 @@ void processKeys(const ResultT &result, const MapT &map, USBBuffer &buf,
           else if (state == KeyState::RELEASED)
             activeLayers &= ~(1 << (GET_LAYER(action) - 1));
         }
+#endif
       }
     }
   }

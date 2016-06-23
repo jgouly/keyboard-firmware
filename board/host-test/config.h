@@ -3,9 +3,10 @@
 
 #include "TestMatrix.h"
 #include "TestPin.h"
-
+#include <string>
 using LayoutT = TestMatrixConfig;
-using ResultT = TestMatrix;
-using MapT = TestMatrix;
+using ResultT = TestMatrix<unsigned>;
+class KeyBase;
+using MapT = TestMatrix<KeyBase*>;
 
 #endif

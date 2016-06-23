@@ -5,15 +5,16 @@
 #include <cstdlib>
 #include <vector>
 
+template<typename T>
 class TestMatrix {
 public:
   TestMatrix(unsigned C, unsigned R) : Columns(C), Rows(R), data() {
     data.resize(C * R);
   }
-  void put(unsigned C, unsigned R, unsigned val) {
+  void put(unsigned C, unsigned R, T val) {
     data[C + (R * Columns)] = val;
   }
-  unsigned get(unsigned C, unsigned R) const { return data[C + (R * Columns)]; }
+  T get(unsigned C, unsigned R) const { return data[C + (R * Columns)]; }
 
   unsigned getNumRows() const { return Rows; }
   unsigned getNumColumns() const { return Columns; }
@@ -32,13 +33,13 @@ public:
 private:
   unsigned Columns;
   unsigned Rows;
-  std::vector<unsigned> data;
+  std::vector<T> data;
 };
 
 class TestMatrixConfig {
 public:
-  TestMatrix createResultMatrix() const { return TestMatrix(Columns, Rows); }
-  void reconfigure(unsigned R, unsigned C) {
+  TestMatrix<unsigned> createResultMatrix() const { return TestMatrix<unsigned>(Columns, Rows); }
+  void reconfigure(unsigned C, unsigned R) {
     Rows = R;
     rowPins.clear();
     rowPins.reserve(Rows);
