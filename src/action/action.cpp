@@ -39,12 +39,17 @@ void processKeys(const ResultT &result, const MapT &map, USBBuffer &buf,
       }
       if (state != KeyState::NONE) {
         unsigned action = map[msb(activeLayers)].get(C, R);
-        if (IS_KEY(action)) {
+        unsigned actionBit = ACTION_BITS & action;
+        switch (actionBit) {
+        case KEY_BIT:
           handleKey(buf, action);
-        } else if (IS_MOD(action)) {
+          break;
+        case MOD_BIT:
           handleMod(buf, action);
-        } else if (IS_LAYER(action)) {
+          break;
+        case LAYER_BIT:
           handleLayer(action, state, activeLayers);
+          break;
         }
       }
     }

@@ -16,6 +16,8 @@
 #define IS_LAYER(L) (L & LAYER_BIT)
 #define GET_LAYER(L) (L & ~LAYER_BIT)
 
+#define ACTION_BITS (KEY_BIT | MOD_BIT | LAYER_BIT)
+
 enum USBKeyCode {
   KEY_NONE = 0,
 
