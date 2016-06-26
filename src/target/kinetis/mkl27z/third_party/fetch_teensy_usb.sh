@@ -1,4 +1,4 @@
-revision=6e0dd8ab39eb85751b05ef1ed8c83b4a20ad7834
+revision=2d37d6e08791dd51c6541c344711b017eb9374bb
 
 files_to_copy="teensy3/usb_dev.c teensy3/usb_mem.h teensy3/usb_mem.c
                 teensy3/usb_dev.h teensy3/usb_desc.h teensy3/usb_desc.c
