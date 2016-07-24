@@ -1,6 +1,7 @@
 #include "scan/scan.h"
 void msdelay(unsigned int ms);
 
+constexpr unsigned PIN_CLEAR_DELAY_MS = 1;
 static ResultT singleScan(LayoutT l) {
   ResultT result = l.createResultMatrix();
   for (unsigned C = 0; C < l.getNumColumns(); ++C) {
@@ -12,6 +13,7 @@ static ResultT singleScan(LayoutT l) {
       result.put(C, R, val);
     }
     columnPin.outputLow();
+    msdelay(PIN_CLEAR_DELAY_MS);
   }
   return result;
 }
